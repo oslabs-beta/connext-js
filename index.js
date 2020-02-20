@@ -17,7 +17,7 @@ class Connext {
     this.use = app.use.bind(this);
   }
 
-
+  
   invoker(req, res) {
     console.log('this.routes is:', this.routes);
     console.log('hitting invoker');
