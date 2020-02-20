@@ -17,7 +17,6 @@ class Connext {
     this.use = app.use.bind(this);
   }
 
-
   invoker(req, res) {
     console.log('this.routes is:', this.routes);
     console.log('hitting invoker');
@@ -38,7 +37,7 @@ class Connext {
     console.log('targetMiddleware is: ', targetMiddleware);
     console.log(this.find);
     // push the spread array targetMiddleware into middleware array
-    middleware.push(...targetMiddleware);
+    middleware.push(...targetMiddleware, errorHandler);
     // counter to keep track of position of current middleware function
     console.log('middleware array is: ', middleware);
     let i = 0;
