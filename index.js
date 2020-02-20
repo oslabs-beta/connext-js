@@ -11,7 +11,7 @@ class Connext {
     this.connect = this.set.bind(this, 'CONNECT');
     this.options = this.set.bind(this, 'OPTIONS');
     this.trace = this.set.bind(this, 'TRACE');
-    this.find = this.set.bind(this, 'FIND');
+    this.find = app.find.bind(this);
     this.compareRoutes = app.compareRoutes.bind(this);
     this.routeSplitter = app.routeSplitter.bind(this);
     this.use = app.use.bind(this);
