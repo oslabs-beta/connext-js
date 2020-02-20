@@ -11,13 +11,12 @@ class Connext {
     this.connect = this.set.bind(this, 'CONNECT');
     this.options = this.set.bind(this, 'OPTIONS');
     this.trace = this.set.bind(this, 'TRACE');
-    this.find = this.set.bind(this, 'FIND');
+    this.find = app.find.bind(this);
     this.compareRoutes = app.compareRoutes.bind(this);
     this.routeSplitter = app.routeSplitter.bind(this);
     this.use = app.use.bind(this);
   }
 
-  
   invoker(req, res) {
     console.log('this.routes is:', this.routes);
     console.log('hitting invoker');
@@ -38,7 +37,7 @@ class Connext {
     console.log('targetMiddleware is: ', targetMiddleware);
     console.log(this.find);
     // push the spread array targetMiddleware into middleware array
-    middleware.push(...targetMiddleware);
+    middleware.push(...targetMiddleware, errorHandler);
     // counter to keep track of position of current middleware function
     console.log('middleware array is: ', middleware);
     let i = 0;
