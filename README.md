@@ -108,10 +108,45 @@ Like in express, every method in Connext has a string bound to it that corespond
 
 For example: `GET, DELETE, POST`, etc.
 
+## Use Case Example
 
+To define a route using Connext, add a JavaScript file inside of Next.js's required `api` folder. 
 
+```
+├── pages                       # required folder for routes in Next.js 
+│   └── api                     # required folder for API routes in Next.js 
+│       └── exampleRoute.js     # created route file inside of API folder     
+```
 
+**Inside of the route file**
 
+  1. Require in Connext and any route specific middleware controller files
+  2. Create a new instantion of Connext
+  3. Set up routes by calling one of Connext-js's built in HTTP methods
+     * Pass the current route in as the first argument
+     * Chain any desired middleware functions in the order you want them to be invoked
+     * An anonymous middleware function can be defined at the end of the middleware chain. This function will end the request cycle.
+  4. You can invoke multiple HTTP methods in the same route file
+  5. Set your Connext-js invocation as the route files export default function
+
+``` javascript
+const Connext = require('Connext-js');
+const middleware = require('../../controllers/middleware');
+
+const app = new Connext();
+
+app.get('/api/exampleRoute', middleware.one, middleware.two, (req, res) => {
+  res.status(200).json(res.example);
+});
+app.post('/api/exampleRoute', middleware.three, (req, res) => {
+  res.status(200).json(res.example);
+});
+app.delete('/api/exampleRoute', middleware.four, (req, res) => {
+  res.status(200).json(res.example);
+});
+
+export default app;
+```
 
 
 
