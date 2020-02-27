@@ -148,7 +148,15 @@ app.delete('/api/exampleRoute', middleware.four, (req, res) => {
 export default app;
 ```
 
+### Creators
 
+[Sara Powers](https://github.com/sarapowers)
+
+[Eli Gallipoli](https://github.com/egcg317)
+
+[Izumi Sato](https://github.com/izumi411)
+
+[Alex Kang](https://github.com/akang0408)
 
 
 
