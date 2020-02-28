@@ -1,60 +1,135 @@
-class Connext {
-  constructor() {
-    this.routes = [];
-    this.set = app.set.bind(this);
-    this.get = this.set.bind(this, 'GET');
-    this.post = this.set.bind(this, 'POST');
-    this.put = this.set.bind(this, 'PUT');
-    this.patch = this.set.bind(this, 'PATCH');
-    this.delete = this.set.bind(this, 'DELETE');
-    this.head = this.set.bind(this, 'HEAD');
-    this.connect = this.set.bind(this, 'CONNECT');
-    this.options = this.set.bind(this, 'OPTIONS');
-    this.trace = this.set.bind(this, 'TRACE');
-    this.find = this.set.bind(this, 'FIND');
-    this.compareRoutes = app.compareRoutes.bind(this);
-    this.routeSplitter = app.routeSplitter.bind(this);
-    this.use = app.use.bind(this);
+const __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+  function adopt(value) { return value instanceof P ? value : new P(((resolve) => { resolve(value); })); }
+  return new (P || (P = Promise))(((resolve, reject) => {
+    function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+    function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
+    function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+    step((generator = generator.apply(thisArg, _arguments || [])).next());
+  }));
+};
+const __generator = (this && this.__generator) || function (thisArg, body) {
+  let _ = {
+    label: 0, sent() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [],
+  }; let f; let y; let t; let
+    g;
+  return g = { next: verb(0), throw: verb(1), return: verb(2) }, typeof Symbol === 'function' && (g[Symbol.iterator] = function () { return this; }), g;
+  function verb(n) { return function (v) { return step([n, v]); }; }
+  function step(op) {
+    if (f) throw new TypeError('Generator is already executing.');
+    while (_) {
+      try {
+        if (f = 1, y && (t = op[0] & 2 ? y.return : op[0] ? y.throw || ((t = y.return) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+        if (y = 0, t) op = [op[0] & 2, t.value];
+        switch (op[0]) {
+          case 0: case 1: t = op; break;
+          case 4: _.label++; return { value: op[1], done: false };
+          case 5: _.label++; y = op[1]; op = [0]; continue;
+          case 7: op = _.ops.pop(); _.trys.pop(); continue;
+          default:
+            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+            if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+            if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+            if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+            if (t[2]) _.ops.pop();
+            _.trys.pop(); continue;
+        }
+        op = body.call(thisArg, _);
+      } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+    }
+    if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
   }
+};
+const __spreadArrays = (this && this.__spreadArrays) || function () {
+  for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+  for (var r = Array(s), k = 0, i = 0; i < il; i++) for (let a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++) r[k] = a[j];
+  return r;
+};
+const Dirext = require('dirext-js');
+const fs = require('fs');
 
-
-  invoker(req, res) {
-    console.log('this.routes is:', this.routes);
-    console.log('hitting invoker');
+const findGlobal = function () {
+  const globalMiddleware = [];
+  try {
+    if (fs.existsSync('./controllers/global.js')) {
+      globalMiddleware.push.apply(globalMiddleware, require('./controllers/global.js'));
+    }
+  } catch (err) {
+    console.log(err);
+  }
+  return globalMiddleware;
+};
+const app = new Dirext();
+module.exports = function () {
+  function connext(req, res) {
+    connext.invoker(req, res);
+  }
+  connext.routes = [];
+  connext.globalMiddleware = findGlobal();
+  connext.get = set.bind(connext, 'GET');
+  connext.post = set.bind(connext, 'POST');
+  connext.put = set.bind(connext, 'PUT');
+  connext.patch = set.bind(connext, 'PATCH');
+  connext.delete = set.bind(connext, 'DELETE');
+  connext.head = set.bind(connext, 'HEAD');
+  connext.connect = set.bind(connext, 'CONNECT');
+  connext.options = set.bind(connext, 'OPTIONS');
+  connext.trace = set.bind(connext, 'TRACE');
+  connext.use = app.use.bind(connext);
+  connext.routeSplitter = app.routeSplitter.bind(connext);
+  connext.compareRoutes = app.compareRoutes.bind(connext);
+  function set() {
+    const args = [];
+    for (let _i = 0; _i < arguments.length; _i++) {
+      args[_i] = arguments[_i];
+    }
+    app.set.apply(connext, args);
+    return connext;
+  }
+  connext.invoker = function (req, res) {
     // creating a variable to store user's exported array of global middleware functions
-    const global = require('../../pages/api/global');
     // defining an error handler that can be overwritten if the user creates their own global error handling function
-    let errorHandler;
+    let errorHandler = function (err, req, res, next) {
+      res.status(500).send(`err: ${err}`);
+    };
     // if the global middleware array exists and the last function in the array accepts 4 arguments (catch all error route), set errorHandler to that last function
-    if (global[0] && global[global.length - 1].length === 4) errorHandler = global.pop();
+    if (connext.globalMiddleware[connext.globalMiddleware.length - 1].length === 4) {
+      errorHandler = connext.globalMiddleware.pop();
+    }
     // if the global middleware array is not empty set const middleware to that array, otherwise set const middleware to an empty array
-    const middleware = global[0] ? global : [];
+    let middleware = [];
     // deconstruct method and url out of req
-    const { method, url } = req;
-    console.log('req.url is: ', req.url);
-    console.log('req.method is: ', req.method);
+    const { method } = req;
+    const { url } = req;
     // invoke this.find with method and url passed in as arguments at the key 'middleware' and set that to const targetMiddleware
-    const targetMiddleware = this.find(method, url).middleware;
-    console.log('targetMiddleware is: ', targetMiddleware);
-    console.log(this.find);
+    const targetMiddleware = app.find.apply(connext, [method, url]).middleware;
     // push the spread array targetMiddleware into middleware array
-    middleware.push(...targetMiddleware);
+    middleware.push.apply(middleware, __spreadArrays(connext.globalMiddleware, targetMiddleware));
     // counter to keep track of position of current middleware function
-    console.log('middleware array is: ', middleware);
     let i = 0;
     // loop through middleware array and invoke each function in order. if an error is passed into next function return that error.
-    async function next(err) {
-      if (err) return res.json(err);
-      // eslint-disable-next-line no-useless-catch
-      try {
-        const currentMiddleware = middleware[i];
-        i += 1;
-        await currentMiddleware(req, res, next);
-        return next();
-      } catch (error) {
-        return error;
-      }
+    function next(err) {
+      return __awaiter(this, void 0, void 0, function () {
+        let currentMiddleware;
+        return __generator(this, (_a) => {
+          if (err) return [2 /* return */, errorHandler(err, req, res, next)];
+          // eslint-disable-next-line no-useless-catch
+          while (i < middleware.length) {
+            try {
+              currentMiddleware = middleware[i];
+              if (i === middleware.length - 1) {
+                middleware = [];
+              }
+              i += 1;
+              return [2 /* return */, currentMiddleware(req, res, next)];
+            } catch (error) {
+              return [2 /* return */, error];
+            }
+          }
+          return [2];
+        });
+      });
     }
     return next();
-  }
-}
+  };
+  return connext;
+};
