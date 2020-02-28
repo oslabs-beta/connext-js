@@ -133,7 +133,7 @@ To define a route using Connext, add a JavaScript file inside of Next.js's requi
 const Connext = require('Connext-js');
 const middleware = require('../../controllers/middleware');
 
-const app = new Connext();
+const app = Connext();
 
 app.get('/api/exampleRoute', middleware.one, middleware.two, (req, res) => {
   res.status(200).json(res.example);
