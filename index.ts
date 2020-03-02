@@ -46,7 +46,7 @@ module.exports = () => {
       res.status(500).send(`err: ${err}`);
     };
     // if the global middleware array exists and the last function in the array accepts 4 arguments (catch all error route), set errorHandler to that last function
-    if (connext.globalMiddleware[connext.globalMiddleware.length - 1].length === 4) {
+    if (connext.globalMiddleware.length > 0 && connext.globalMiddleware[connext.globalMiddleware.length - 1].length === 4) {
       errorHandler = connext.globalMiddleware.pop();
     }
     // if the global middleware array is not empty set const middleware to that array, otherwise set const middleware to an empty array
@@ -76,7 +76,8 @@ module.exports = () => {
         }
       }
     }
-    return next();
+    if (middleware[0]) return next();
+    return;
   };
   return connext;
 };
