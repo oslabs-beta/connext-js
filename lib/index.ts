@@ -43,6 +43,7 @@ module.exports = () => {
     // creating a variable to store user's exported array of global middleware functions
     // defining an error handler that can be overwritten if the user creates their own global error handling function
     let errorHandler = (err: object, req: object, res: object, next: object) => {
+      // @ts-ignore
       res.status(500).send(`err: ${err}`);
     };
     // if the global middleware array exists and the last function in the array accepts 4 arguments (catch all error route), set errorHandler to that last function
@@ -52,6 +53,7 @@ module.exports = () => {
     // if the global middleware array is not empty set const middleware to that array, otherwise set const middleware to an empty array
     let middleware = [];
     // deconstruct method and url out of req
+          // @ts-ignore
     const { method, url } = req;
     // invoke this.find with method and url passed in as arguments at the key 'middleware' and set that to const targetMiddleware
     const targetMiddleware = app.find.apply(connext, [method, url]).middleware;
@@ -60,6 +62,8 @@ module.exports = () => {
     // counter to keep track of position of current middleware function
     let i = 0;
     // loop through middleware array and invoke each function in order. if an error is passed into next function return that error.
+          // @ts-ignore
+
     async function next(err: object) {
       if (err) return errorHandler(err, req, res, next);
       // eslint-disable-next-line no-useless-catch
@@ -76,6 +80,7 @@ module.exports = () => {
         }
       }
     }
+          // @ts-ignore
     if (middleware[0]) return next();
     return;
   };
