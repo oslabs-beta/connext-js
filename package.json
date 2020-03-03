@@ -6,7 +6,7 @@
   "types": "index.d.ts",
   "scripts": {
     "setup": "npm install",
-    "build": "tsc index.ts",
+    "build": "tsc lib/index.ts",
     "test": "jest"
   },
   "repository": {
