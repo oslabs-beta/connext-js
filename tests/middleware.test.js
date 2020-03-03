@@ -1,5 +1,5 @@
 // /*eslint-disable*/
-const Connext = require('../index.js');
+const Connext = require('../lib/index.js');
 const middleware = require('./testing-middleware.js');
 
 const connext = Connext();
@@ -20,7 +20,7 @@ describe('connext middleware testing', () => {
       });
       connext(req, res);
       expect(result).toEqual(10);
-    })
+    });
 
     it('should update the response body given a single middleware function', () => {
       const req = { method: 'POST', url: '/api/test' };
