@@ -5,7 +5,7 @@
   "main": "./lib/index.js",
   "types": "index.d.ts",
   "scripts": {
-    "prepublish": "tsc lib/index.ts",
+    "prepare": "tsc lib/index.ts",
     "test": "jest"
   },
   "repository": {
