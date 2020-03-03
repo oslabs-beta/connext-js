@@ -73,8 +73,8 @@ module.exports = {
     "js",
     "json",
     "jsx",
-    "ts",
-    "tsx",
+    // "ts",
+    // "tsx",
     "node"
   ],
 
