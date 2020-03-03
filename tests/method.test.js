@@ -1,5 +1,5 @@
 /*eslint-disable*/
-const Connext = require('../index.js');
+const Connext = require('../lib/index.js');
 
 const connext = Connext();
 
