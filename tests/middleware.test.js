@@ -1,6 +1,6 @@
 // /*eslint-disable*/
 const Connext = require('../index.js');
-const middleware = require('../testing-middleware.js');
+const middleware = require('./testing-middleware.js');
 
 const connext = Connext();
 
