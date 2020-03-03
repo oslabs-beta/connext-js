@@ -5,7 +5,8 @@
   "main": "./lib/index.js",
   "types": "index.d.ts",
   "scripts": {
-    "prepare": "tsc lib/index.ts",
+    "setup": "npm install",
+    "build": "tsc lib/index.ts",
     "test": "jest"
   },
   "repository": {
