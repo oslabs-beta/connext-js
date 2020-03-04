@@ -52,7 +52,7 @@ Example file structure:
 ├── ...
 ├── controllers
 │   ├── global.js         # required for global middleware
-│   └── middleware.js     # suggested for modularization of middlware functions                                 
+│   └── middleware.js     # suggested for modularization of middleware functions                                 
 ├── pages                 # required folder for routes in Next.js 
 │   └── api               # required folder for API routes in Next.js 
 └── ...                   
