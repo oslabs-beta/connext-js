@@ -121,7 +121,7 @@ To define a route using Connext, add a JavaScript file inside of Next.js's requi
 **Inside of the route file**
 
   1. Require in Connext and any route specific middleware controller files
-  2. Create a new instantion of Connext
+  2. Create a new instantiation of Connext
   3. Set up routes by calling one of Connext-js's built in HTTP methods
      * Pass the current route in as the first argument
      * Chain any desired middleware functions in the order you want them to be invoked
