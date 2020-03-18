@@ -61,7 +61,7 @@ Example file structure:
 ```
 
 ### Global Middleware
-To utilize Connext's global middleware functionality, you must create a `global.js` file in a folder called `controllers`. The `controllers` folder must be at the same level as your `pages` folder and export an **array**. 
+To utilize Connext's global middleware functionality, you must create a `global.js` file in a folder called `controllers`. The `controllers` folder must be at the same level as your `pages` folder and your `global.js` file must export an **array**. 
 
 `connext` has a simple global built-in error handler that will run whenever something is passed into the invocation of `next()`. If you'd like to use your own error handler, define it in `global.js` as the **last** element of the exported array. 
 
