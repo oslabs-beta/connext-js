@@ -1,7 +1,8 @@
 ![Connext logo](https://i.ibb.co/kJpDpQG/connextlogo.png)
 
-A lightweight middleware and route handling solution for Next.js. Powered by [dirext](https://github.com/dirext-js/dirext) 🛸 
 [![Build Status](https://travis-ci.org/oslabs-beta/connext-js.svg?branch=master)](https://travis-ci.org/oslabs-beta/connext-js)
+
+A lightweight middleware and route handling solution for Next.js. Powered by [dirext](https://github.com/dirext-js/dirext) 🛸 
 
 # Install connext
 `$ npm install connext-js`
