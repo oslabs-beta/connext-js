@@ -27,7 +27,13 @@
     "routing",
     "router",
     "route",
-    "next"
+    "next",
+    "API",
+    "API routes",
+    "chainable",
+    "lightweight",
+    "flexible",
+    "custom"
   ],
   "dependencies": {
     "@types/node": "^13.7.6",
